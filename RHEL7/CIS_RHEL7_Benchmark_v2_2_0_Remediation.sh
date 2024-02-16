@@ -755,32 +755,6 @@ else
   fail=$((fail + 1))
 fi
 
-# Ensure HTTP server is not enabled
-echo
-echo -e "${RED}2.2.10${NC} Ensure HTTP server is not enabled"
-rhel_2_2_10="$(systemctl disable httpd.service || yum erase httpd -y)"
-rhel_2_2_10=$?
-if [[ "$rhel_2_2_10" -eq 0 ]]; then
-  echo -e "${GREEN}Remediated:${NC} Ensure HTTP server is not enabled"
-  success=$((success + 1))
-else
-  echo -e "${RED}UnableToRemediate:${NC} Ensure HTTP server is not enabled"
-  fail=$((fail + 1))
-fi
-
-# Ensure IMAP and POP3 server is not enabled
-echo
-echo -e "${RED}2.2.11${NC} Ensure IMAP and POP3 server is not enabled"
-rhel_2_2_11="$(systemctl disable dovecot.service || yum erase dovecot -y)"
-rhel_2_2_11=$?
-if [[ "$rhel_2_2_11" -eq 0 ]]; then
-  echo -e "${GREEN}Remediated:${NC} Ensure IMAP and POP3 server is not enabled"
-  success=$((success + 1))
-else
-  echo -e "${RED}UnableToRemediate:${NC} Ensure IMAP and POP3 server is not enabled"
-  fail=$((fail + 1))
-fi
-
 # Ensure Samba is not enabled
 echo
 echo -e "${RED}2.2.12${NC} Ensure Samba is not enabled"
