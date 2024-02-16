@@ -724,19 +724,6 @@ else
   fail=$((fail + 1))
 fi
 
-#Ensure HTTP server is not enabled
-echo
-echo -e "${RED}2.2.10${NC} Ensure HTTP server is not enabled"
-systemctl disable httpd
-policystatus=$?
-if [[ "$policystatus" -eq 0 ]]; then
-  echo -e "${GREEN}Remediated:${NC} Ensure HTTP server is not enabled"
-  success=$((success + 1))
-else
-  echo -e "${RED}UnableToRemediate:${NC} Ensure HTTP server is not enabled"
-  fail=$((fail + 1))
-fi
-
 #Ensure IMAP and POP3 server is not enabled
 echo
 echo -e "${RED}2.2.11${NC} Ensure IMAP and POP3 server is not enabled"
@@ -760,19 +747,6 @@ if [[ "$policystatus" -eq 0 ]]; then
   success=$((success + 1))
 else
   echo -e "${RED}UnableToRemediate:${NC} Ensure Samba is not enabled"
-  fail=$((fail + 1))
-fi
-
-#Ensure HTTP Proxy Server is not enabled
-echo
-echo -e "${RED}2.2.13${NC} Ensure HTTP Proxy Server is not enabled"
-systemctl disable squid
-policystatus=$?
-if [[ "$policystatus" -eq 0 ]]; then
-  echo -e "${GREEN}Remediated:${NC} Ensure HTTP Proxy Server is not enabled"
-  success=$((success + 1))
-else
-  echo -e "${RED}UnableToRemediate:${NC} Ensure HTTP Proxy Server is not enabled"
   fail=$((fail + 1))
 fi
 
